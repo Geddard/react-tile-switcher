@@ -1,0 +1,51 @@
+{
+  "name": "react-tile-switcher",
+  "version": "1.0.0",
+  "description": "Size-flexible tile switcher built on React and @emotion styled-components",
+  "main": "dist/cjs/index.js",
+  "author": "Javier Baccarelli",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@emotion/babel-plugin": "^11.7.2",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.1",
+    "@types/react": "^17.0.41",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup": "^2.70.1",
+    "rollup-plugin-dts": "^4.2.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2"
+  },
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "rollup": "rollup -c",
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --config jest.config.js --watch",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "tslint --config tslint.json src/**/*.ts"
+  }
+}

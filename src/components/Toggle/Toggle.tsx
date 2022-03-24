@@ -1,10 +1,8 @@
-import { css } from '@emotion/react';
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
-import styled from '@emotion/styled';
 import { useCallback, useRef, useState } from 'react';
+import styled, { css, StyledComponent } from 'styled-components';
 
 export interface Item {
-  icon?: EmotionJSX.Element;
+  icon?: JSX.Element | StyledComponent<'svg', {}>;
   text?: string;
   testid?: string;
   onClick?: () => void;

@@ -1,6 +1,6 @@
 {
   "name": "react-tile-switcher",
-  "version": "2.0.1",
+  "version": "2.0.5",
   "description": "Size-flexible tile switcher built on React and styled-components",
   "main": "dist/cjs/index.js",
   "author": "Javier Baccarelli",
@@ -46,7 +46,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
+    "build:watch": "rollup -c --watch",
     "test": "jest --config jest.config.js",
-    "test:watch": "jest --config jest.config.js --watch"
+    "test:watch": "jest --config jest.config.js --watch",
+    "coverage": "jest --coverage --watchAll=false"
   }
 }

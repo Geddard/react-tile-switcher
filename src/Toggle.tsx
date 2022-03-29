@@ -1,10 +1,11 @@
-import { useCallback, useRef, useState } from 'react';
-import styled, { css, StyledComponent } from 'styled-components';
+import { ComponentType, useCallback, useRef, useState } from 'react';
+import styled, { css } from 'styled-components';
 
 export interface Item {
-  icon?: JSX.Element | StyledComponent<'svg', {}>;
-  text?: string;
+  icon?: JSX.Element | ComponentType;
+  text?: string | JSX.Element | ComponentType;
   testid?: string;
+  className?: string;
   onClick?: () => void;
 }
 
@@ -14,6 +15,7 @@ export type Transition = 'default' | 'vertical' | 'cross-fade';
 
 export interface ToggleProps {
   items: ToggleItems;
+  className?: string;
   transition?: Transition;
 }
 
@@ -28,7 +30,7 @@ const ToggleTrack = styled.div`
 const ToggleItem = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 const StyledToggle = styled.div<{ transition: Transition }>`
@@ -51,8 +53,10 @@ const StyledToggle = styled.div<{ transition: Transition }>`
           `;
         case 'cross-fade':
           return css`
-            width: 100%;
-            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             opacity: 0;
             transform: scale(0.5);
             position: absolute;
@@ -74,7 +78,7 @@ const calculateTranslate = (activeItem: number, measurement: number, itemCount: 
   return activeItem * itemMeasurement;
 };
 
-const Toggle = ({ items, transition = 'default' }: ToggleProps) => {
+const Toggle = ({ items, transition = 'default', className }: ToggleProps) => {
   const [activeItem, setActiveItem] = useState(0);
 
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -114,14 +118,15 @@ const Toggle = ({ items, transition = 'default' }: ToggleProps) => {
   }, [activeItem, getUpdatedTranslate, transition]);
 
   return (
-    <StyledToggle transition={transition}>
+    <StyledToggle className={className} transition={transition}>
       <ToggleTrack
         style={transition !== 'cross-fade' ? handleTransition() : {}}
         data-testid="toggle-track"
         ref={toggleRef}
       >
-        {items.map(({ text, icon, testid, onClick }, index) => (
+        {items.map(({ text, icon, testid, onClick, className }, index) => (
           <ToggleItem
+            className={className}
             onClick={() => {
               switchActiveItem();
               onClick?.();
